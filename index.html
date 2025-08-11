@@ -475,24 +475,28 @@
         // ปุ่มแสดง/ซ่อนคำอวยพร
         const showBtn = document.getElementById('showBlessingsBtn');
         const blessingsContainer = document.getElementById('blessingsContainer');
-
+        
         showBtn.addEventListener('click', () => {
-            if (blessingsContainer.style.display === 'none' || blessingsContainer.style.display === '') {
-                blessingsContainer.style.display = 'block';
-                showBtn.textContent = 'ซ่อนคำอวยพร';
-
-                // รีเซ็ตคลาสอนิเมชัน แล้วเพิ่มใหม่เพื่อให้เล่นทุกครั้งที่เปิด
-                const cards = blessingsContainer.querySelectorAll('.blessing-card');
-                cards.forEach((card, index) => {
-                    card.classList.remove('animate__fadeInUp');
-                    void card.offsetWidth; // trigger reflow
-                    card.style.animationDelay = `${index * 0.1}s`;
-                    card.classList.add('animate__animated', 'animate__fadeInUp');
-                });
-            } else {
-                blessingsContainer.style.display = 'none';
-                showBtn.textContent = 'เปิดคำอวยพรพิเศษ';
-            }
+          if (blessingsContainer.style.display === 'none' || blessingsContainer.style.display === '') {
+            blessingsContainer.style.display = 'block';
+            showBtn.textContent = 'ซ่อนคำอวยพร';
+        
+            const cards = blessingsContainer.querySelectorAll('.blessing-card');
+            cards.forEach((card, index) => {
+              card.classList.remove('animate__fadeInUp', 'animate__animated');
+              void card.offsetWidth; // รีเฟรชอนิเมชัน
+              card.style.animationDelay = `${index * 0.1}s`;
+              card.classList.add('animate__animated', 'animate__fadeInUp');
+            });
+          } else {
+            blessingsContainer.style.display = 'none';
+            showBtn.textContent = 'เปิดคำอวยพรพิเศษ';
+        
+            const cards = blessingsContainer.querySelectorAll('.blessing-card');
+            cards.forEach(card => {
+              card.classList.remove('animate__fadeInUp', 'animate__animated');
+            });
+          }
         });
 
         // ดนตรีพื้นหลัง
