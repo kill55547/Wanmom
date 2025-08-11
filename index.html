@@ -508,7 +508,7 @@
     </div>
 
     <div class="music-control">
-        <button class="btn-magic" id="musicBtn">ปิดเพลง ♫</button>
+        <button class="btn-magic" id="musicBtn">ปิดเพลง ♫(บัคที่แก้ไม่ได้)</button>
         <iframe
           id="bgMusicFrame"
           src="https://www.youtube.com/embed/1?autoplay=1&loop=1&playlist=1&controls=0&modestbranding=1"
@@ -583,10 +583,10 @@
             const currentSrc = bgMusicFrame.src;
             if (currentSrc.includes("autoplay=1")) {
               bgMusicFrame.src = currentSrc.replace("autoplay=1", "autoplay=0");
-              musicBtn.textContent = 'เปิดเพลง ♫(ทำให้กดเล่นเฉยๆเพลงไม่มีเพราะแก้ไม่ได้555)';
+              musicBtn.textContent = 'เปิดเพลง ♫(บัคที่แก้ไม่ได้)';
             } else {
               bgMusicFrame.src = currentSrc.replace("autoplay=0", "autoplay=1");
-              musicBtn.textContent = 'ปิดเพลง ♫(ทำให้กดเล่นเฉยๆเพลงไม่มีเพราะแก้ไม่ได้555)';
+              musicBtn.textContent = 'ปิดเพลง ♫(บัคที่แก้ไม่ได้)';
             }
         });
 
