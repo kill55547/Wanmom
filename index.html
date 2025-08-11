@@ -217,6 +217,15 @@
             right: 30px;
             z-index: 100;
         }
+        
+        /* สไตล์สำหรับ iframe ที่ใช้เล่นเพลง */
+        #bgMusicFrame {
+          position: absolute;
+          width: 0;
+          height: 0;
+          border: none;
+          display: none; /* ซ่อน iframe */
+        }
 
         /* เอฟเฟกต์สปาร์คเกิล */
         .sparkle {
@@ -499,13 +508,12 @@
     </div>
 
     <div class="music-control">
-        <button class="btn-magic" id="musicBtn">เปิดเพลง ♫</button>
-        <audio id="bgMusic" loop>
-            <source
-              src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-              type="audio/mpeg"
-            />
-        </audio>
+        <button class="btn-magic" id="musicBtn">ปิดเพลง ♫</button>
+        <iframe
+          id="bgMusicFrame"
+          src="https://www.youtube.com/embed/1?autoplay=1&loop=1&playlist=1&controls=0&modestbranding=1"
+          allow="autoplay"
+        ></iframe>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
@@ -569,15 +577,16 @@
 
         // ดนตรีพื้นหลัง
         const musicBtn = document.getElementById('musicBtn');
-        const bgMusic = document.getElementById('bgMusic');
+        const bgMusicFrame = document.getElementById('bgMusicFrame');
 
         musicBtn.addEventListener('click', () => {
-            if (bgMusic.paused) {
-                bgMusic.play();
-                musicBtn.textContent = 'ปิดเพลง ♫';
+            const currentSrc = bgMusicFrame.src;
+            if (currentSrc.includes("autoplay=1")) {
+              bgMusicFrame.src = currentSrc.replace("autoplay=1", "autoplay=0");
+              musicBtn.textContent = 'เปิดเพลง ♫';
             } else {
-                bgMusic.pause();
-                musicBtn.textContent = 'เปิดเพลง ♫';
+              bgMusicFrame.src = currentSrc.replace("autoplay=0", "autoplay=1");
+              musicBtn.textContent = 'ปิดเพลง ♫';
             }
         });
 
@@ -596,3 +605,4 @@
     </script>
 </body>
 </html>
+                 
